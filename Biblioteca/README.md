@@ -1,13 +1,11 @@
 
 Si consideri il seguente schema relazionale relativo ad una porzione di un ipotetico
 sistema di gestione di una biblioteca:
-• scrittore(nome, sesso, nazione)
-• libro(ISBN, titolo, autore, genere), dove l’attributo autore (resp. genere)
-e’ chiave esterna sulla relazione scrittore (resp. generi)
-• socio(id socio, nome, sesso, eta)
-• ha letto(ISBN,socio), dove l’attributo socio (resp. ISBN) e’ chiave esterna
-su socio (resp. libro).
-• generi(nome, sala)
+  • scrittore(nome, sesso, nazione)
+  • libro(ISBN, titolo, autore, genere), dove l’attributo autore (resp. genere) e’ chiave esterna sulla relazione scrittore (resp. generi)
+  • socio(id socio, nome, sesso, eta)
+  • ha letto(ISBN,socio), dove l’attributo socio (resp. ISBN) e’ chiave esterna su socio (resp. libro).
+  • generi(nome, sala)
 
 (1) Si definisca uno script SQL per la generazione di uno schema biblioteca
 che implementa lo schema relazionale proposto. Tale script dovra’ essere
