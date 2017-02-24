@@ -53,7 +53,26 @@ insert into percorso values(3,'Perugia');
 --select treno.cod_treno from treno,bologna where treno.cod_treno not in (bologna.cod_treno);
 --determinare le aziende ferroviarie che hanno una partenza da ogni stazione
 --determinare le aziende ferroviarie che non hanno una partenza da nessuna stazione
+alter table citta add numstazioni integer;
+
 select distinct x.azienda from treno as x 
 where not exists(select * from stazione AS y 
 where not exists(select * from treno as z 
 where z.azienda=x.azienda and z.stazione_partenza=y.nome));
+
+create function no_station() returns trigger as $body$
+declare
+r record;
+y varchar(255);
+x integer;
+begin
+  for r in select citta,count(cod_stazione) as n from stazione group by citta
+  loop 
+	update citta set numstazioni=r.n where citta.nome=r.citta;
+	end loop;
+return new;
+end
+$body$
+language plpgsql;
+create trigger no_station after insert on stazione
+for each row execute procedure no_station();
